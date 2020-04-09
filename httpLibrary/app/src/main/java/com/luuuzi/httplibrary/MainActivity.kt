@@ -1,14 +1,12 @@
 package com.luuuzi.httplibrary
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.luuuzi.common.net.bean.BaseBean
-import com.luuuzi.common.net.callback.IFailure
-import com.luuuzi.common.net.callback.IRequest
-import com.luuuzi.common.net.callback.ISuccess
-import com.luuuzi.common.net.client.HttpClient
+import com.luuuzi.simplehttp.net.callback.IFailure
+import com.luuuzi.simplehttp.net.callback.IRequest
+import com.luuuzi.simplehttp.net.callback.ISuccess
+import com.luuuzi.simplehttp.net.client.HttpClient
 import com.trello.rxlifecycle2.android.ActivityEvent
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 

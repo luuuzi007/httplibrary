@@ -1,2 +1,2 @@
 rootProject.name='httpLibrary'
-include ':app', ':common'
+include ':app', ':simplehttp'

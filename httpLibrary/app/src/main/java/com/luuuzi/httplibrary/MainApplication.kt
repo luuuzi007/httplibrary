@@ -2,9 +2,9 @@ package com.luuuzi.httplibrary
 
 
 import android.app.Application
-import com.luuuzi.common.app.App
-import com.luuuzi.common.app.Configurator
-import com.luuuzi.common.util.thread.ThreadUtils
+import com.luuuzi.simplehttp.app.App
+import com.luuuzi.simplehttp.app.Configurator
+import com.luuuzi.simplehttp.util.thread.ThreadUtils
 import com.orhanobut.logger.Logger
 
 
