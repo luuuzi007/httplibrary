@@ -4,20 +4,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group='com.luuuzi.httplibrary'
-//group='com.github.abcdqianlei1990'
 
 android {
-//    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
-//    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
     defaultConfig {
-//        minSdkVersion rootProject.ext.android["minSdkVersion"]
-//        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-//        versionCode rootProject.ext.android["versionCode"]
-//        versionName rootProject.ext.android["versionName"]
-
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -26,7 +18,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
     }
-
+    //    指定java版本为1.8
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -45,17 +41,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-//    api rootProject.ext.dependencies["retrofit"]
-//    api rootProject.ext.dependencies["retrofit-converter-gson"]
-//    api rootProject.ext.dependencies["retrofit-adapter-rxjava"]
-//    api rootProject.ext.dependencies["rxlifecycle"]
-//    api rootProject.ext.dependencies["okhttp3"]
-//    api rootProject.ext.dependencies["gson"]
-//    api rootProject.ext.dependencies["rxandroid"]
-//    api rootProject.ext.dependencies["rxlifecycle-components"]
-//    api rootProject.ext.dependencies["blank_util"]
-//    api rootProject.ext.dependencies["orhanobut_log"]
-
     api 'com.squareup.retrofit2:retrofit:2.4.0'
     api 'com.squareup.retrofit2:converter-gson:2.4.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
@@ -65,6 +50,7 @@ dependencies {
     api 'io.reactivex.rxjava2:rxandroid:2.1.0'
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
     api 'com.blankj:utilcode:1.25.9'//工具类
-    api 'com.orhanobut:logger:2.2.0'//查看日志打印
+    //加载dialog
+    api 'com.wang.avi:library:2.1.3'
 
 }

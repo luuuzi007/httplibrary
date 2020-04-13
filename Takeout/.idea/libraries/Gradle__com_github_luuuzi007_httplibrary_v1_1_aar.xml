@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.luuuzi007:httplibrary:v1.1@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/11b7726c92c2507ef57b5b5a4690a242/jetified-httplibrary-v1.1/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/11b7726c92c2507ef57b5b5a4690a242/jetified-httplibrary-v1.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/11b7726c92c2507ef57b5b5a4690a242/jetified-httplibrary-v1.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

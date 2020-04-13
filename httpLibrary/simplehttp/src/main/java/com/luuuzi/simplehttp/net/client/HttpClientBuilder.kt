@@ -4,6 +4,7 @@ import android.content.Context
 import com.luuuzi.simplehttp.net.callback.IError
 import com.luuuzi.simplehttp.net.callback.IFailure
 import com.luuuzi.simplehttp.net.callback.IRequest
+import com.luuuzi.simplehttp.widget.loader.LoaderStyle
 import com.trello.rxlifecycle2.LifecycleTransformer
 import java.util.*
 
@@ -21,6 +22,7 @@ class HttpClientBuilder {
     private var mIRequest: IRequest? = null
     private var mContext: Context? = null
     private var mIsEncrypt = true
+    private var mLoaderStyle:LoaderStyle?=null
     private var mStatusView: IStatusView? = null
     private var lifecycleTransformer: LifecycleTransformer<*>? = null
     private var strJson: String? = null
@@ -71,18 +73,21 @@ class HttpClientBuilder {
         return this
     }
 
+    /**
+     * @param mContext
+     * @param mLoaderStyle dialog样式
+     */
+    fun loader(mContext: Context?,mLoaderStyle: LoaderStyle?): HttpClientBuilder {
+        this.mLoaderStyle = mLoaderStyle
+        this.mContext = mContext
+        return this
+    }
 
-//    fun loader(mLoaderStyle: LoaderStyle?, mContext: Context?): HttpClientBuilder {
-//        this.mLoaderStyle = mLoaderStyle
-//        this.mContext = mContext
-//        return this
-//    }
-//
-//    fun loader(mContext: Context?): HttpClientBuilder { //        this.mLoaderStyle = LoaderStyle.BallZigZagIndicator;
-//        mLoaderStyle = LoaderStyle.LineSpinFadeLoaderIndicator
-//        this.mContext = mContext
-//        return this
-//    }
+    fun loader(mContext: Context?): HttpClientBuilder {
+        this.mLoaderStyle = LoaderStyle.LineSpinFadeLoaderIndicator
+        this.mContext = mContext
+        return this
+    }
 
 
     fun isEncrypt(isEncrypt: Boolean): HttpClientBuilder {
@@ -98,7 +103,7 @@ class HttpClientBuilder {
     fun build(): HttpClient {
         return HttpClient(
             mUrl!!, mIError, mIFailure, mIRequest,
-            PARAMS, mContext, mIsEncrypt, mStatusView, lifecycleTransformer
+            PARAMS, mLoaderStyle,mContext, mIsEncrypt, mStatusView, lifecycleTransformer
         )
     }
 }

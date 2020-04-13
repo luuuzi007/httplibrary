@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.os.Handler;
 
 import com.luuuzi.simplehttp.net.callback.INetError;
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +36,7 @@ public class Configurator {
     }
 
     public final void configure() {
-        Logger.addLogAdapter(new AndroidLogAdapter());
+//        Logger.addLogAdapter(new AndroidLogAdapter());
         VC_CONFIGS.put(ConfigType.CONFIG_READY, true);
 
     }

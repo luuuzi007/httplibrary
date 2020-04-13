@@ -7,5 +7,5 @@ package com.luuuzi.simplehttp.net.callback
  *    desc   : 请求错误回调
  */
 interface IError {
-    fun onError(code:Int,msg:String)
+    fun onError(code:Int,msg:String?)
 }

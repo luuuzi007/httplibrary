@@ -6,6 +6,8 @@ import com.luuuzi.simplehttp.app.App
 import com.luuuzi.simplehttp.app.ConfigType
 import com.luuuzi.simplehttp.net.callback.*
 import com.luuuzi.simplehttp.net.error.ApiException
+import com.luuuzi.simplehttp.widget.loader.LoaderStyle
+import com.luuuzi.simplehttp.widget.loader.VCyunLoader
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
@@ -21,6 +23,7 @@ class BaseObserver<T>(
     var iFailure: IFailure?,
     var iSuccess: ISuccess<T>,
     var iRequest: IRequest?,
+    var loaderStyle: LoaderStyle?,
     var iStatusView: IStatusView?,
     var iError: IError?
 ) : Observer<T> {
@@ -36,7 +39,7 @@ class BaseObserver<T>(
 
     override fun onNext(value: T) {
         Log.i(tag, "成功:$value")
-//        stopLoading();
+        stopLoading();
 
         this.iStatusView?.openSuccessView()//隐藏加载view
 
@@ -51,7 +54,7 @@ class BaseObserver<T>(
             return
         if (iError != null) {
             if (e is ApiException) {
-                iError?.onError(e.errorCode, "自定义错误")
+                iError?.onError(e.errorCode, e.message)
             } else {
                 //其他错误
             }
@@ -61,7 +64,8 @@ class BaseObserver<T>(
          */
         try {
             var netErrotHandler: Any? = App.getConfiguration(
-                ConfigType.NET_ERROR_HADNLE)
+                ConfigType.NET_ERROR_HADNLE
+            )
             if (netErrotHandler != null) {
                 val c: Class<*> = netErrotHandler as Class<*>
                 iNetError = c.newInstance() as INetError
@@ -71,11 +75,15 @@ class BaseObserver<T>(
 
         }
 
-        if (iFailure != null) {//请求失败
-            iFailure?.onFailure(e.message)
-        }
-        if (iRequest != null) {//请求结束
-            iRequest?.onRequestEnd()
+        iFailure?.onFailure(e.message)//请求失败
+
+        iRequest?.onRequestEnd()//请求结束
+        stopLoading()
+
+    }
+    private fun stopLoading(){
+        if(loaderStyle!=null){
+            VCyunLoader.stopLoading()
         }
     }
 }

@@ -8,6 +8,8 @@ import com.luuuzi.simplehttp.net.callback.IError
 import com.luuuzi.simplehttp.net.callback.IFailure
 import com.luuuzi.simplehttp.net.callback.IRequest
 import com.luuuzi.simplehttp.net.callback.ISuccess
+import com.luuuzi.simplehttp.widget.loader.LoaderStyle
+import com.luuuzi.simplehttp.widget.loader.VCyunLoader
 import com.trello.rxlifecycle2.LifecycleTransformer
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -33,8 +35,9 @@ class HttpClient(
     var failure: IFailure?,
     var request: IRequest?,
     var params: WeakHashMap<String, Any>?,
+    var loaderStyle: LoaderStyle?,
     context: Context?,
-    var is_encrypt: Boolean,
+    var is_encrypt: Boolean,//是否加密
     var statusView: IStatusView?,
     var lifecycleTransformer: LifecycleTransformer<*>?
 ) {
@@ -143,6 +146,7 @@ class HttpClient(
                             failure,
                             iSuccess as ISuccess<Any>,
                             request,
+                            loaderStyle,
                             statusView,
                             error
                         )
@@ -155,6 +159,7 @@ class HttpClient(
                             failure,
                             iSuccess,
                             request,
+                            loaderStyle,
                             statusView,
                             error
                         )
@@ -175,7 +180,9 @@ class HttpClient(
             }
 
             //显示加载进度框
-
+            if (loaderStyle!=null){
+                VCyunLoader.showLoading(CONTEXT!!.get(), loaderStyle)
+            }
 //            bodyObservable?.map(object : Function<ResponseBody, T> {
 //                override fun apply(responseBody: ResponseBody): T {
 //                    val source = responseBody.source()
